@@ -1,22 +1,25 @@
-name: DEMO
+name: Deploy to EC2
 
 on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
-  build-and-deploy-in-s3:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-region: us-east-1
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.EC2_PEM_KEY }}
 
-    - name: Deploy static site to S3 bucket
-      run: aws s3 sync . s3://nishesh-bucket --delete
+      - name: Copy files to EC2 instance
+        run: scp -r . ubuntu@${{ secrets.EC2_HOST }}:/var/www/html
+
+      - name: SSH into EC2 instance and reload Nginx
+        run: ssh ubuntu@${{ secrets.EC2_HOST }} 'sudo systemctl reload nginx'
