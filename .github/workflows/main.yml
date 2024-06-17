@@ -14,4 +14,4 @@ jobs:
       run: |
         echo "Commit SHA: ${{ github.sha }}"
         echo "Pusher: ${{ github.actor }}"
-        echo "Repository: ${{ github.repository }}
+        echo "Repository: ${{ github.repository }}"
