@@ -12,7 +12,6 @@ jobs:
     steps:
     - name: Display Push Event Details
       run: |
-        echo "Push event on branch ${{ github.ref }}"
         echo "Commit SHA: ${{ github.sha }}"
         echo "Pusher: ${{ github.actor }}"
         echo "Repository: ${{ github.repository }}
