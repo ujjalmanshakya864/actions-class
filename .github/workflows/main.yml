@@ -6,14 +6,9 @@ on:
       - main
 
 jobs:
-  build:
+  mytestbuild:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print a message
-        run: |
-         echo "Push event on branch ${{ github.ref }}"
-         echo "Commit SHA: ${{ github.sha }}"
-         echo "Pusher: ${{ github.actor }}"
-         echo "Repository: ${{ github.repository }}"
-       
+      - name: Print a test message
+        run: echo "Hello from your GitHub Actions workflow initiated by $GITHUB_ACTOR!"
