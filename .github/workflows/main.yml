@@ -1,0 +1,16 @@
+
+name: github-actions
+on:
+  push:
+    branches:
+      - main  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Display Push Event Details
+      run: |
+        echo "Commit SHA: ${{ github.sha }}"
+        echo "Pusher: ${{ github.actor }}"
+        echo "Repository: ${{ github.repository }}"
