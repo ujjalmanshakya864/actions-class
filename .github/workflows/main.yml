@@ -3,7 +3,7 @@ name: Simple CI Workflow
 on:
   push:
     branches:
-      - '*'
+      - main
 
 jobs:
   build:
@@ -11,4 +11,9 @@ jobs:
 
     steps:
       - name: Print a message
-        run: echo "Hello from your GitHub Actions workflow initiated by $GITHUB_ACTOR!"
+        run: |
+         echo "Push event on branch ${{ github.ref }}"
+         echo "Commit SHA: ${{ github.sha }}"
+         echo "Pusher: ${{ github.actor }}"
+         echo "Repository: ${{ github.repository }}"
+       
