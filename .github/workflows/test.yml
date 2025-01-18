@@ -10,4 +10,4 @@ jobs:
 
     steps:
      - name: PRINT A TEST MESSSAGE
-       run: echo "hello from $GITHUB_ACTOR!
+       run: echo "hello from $GITHUB_ACTOR!"
